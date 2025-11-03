@@ -257,7 +257,7 @@ describe('Caso de Teste 15: Fazer Pedido — Registrar Antes do Checkout', () =>
         cy.get('#address_delivery').should('contain', user.address1);
         cy.get('#address_invoice').should('contain', user.firstName);
         cy.get('#address_invoice').should('contain', user.address1);
-        cy.get('.table.table-condensed').should('be.visible'); // Review Your Order table
+        cy.get('.table.table-condensed').should('be.visible'); 
 
         cy.get('.form-control').type('Pedido de teste Cypress.');
         cy.get(':nth-child(7) > .btn').click();
