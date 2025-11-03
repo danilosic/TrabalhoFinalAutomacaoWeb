@@ -1,32 +1,32 @@
-name: Cypress Tests
-
+# CI de Nível 01 - Disparo manual a partir de 1 clique
+# nome do nosso 'pipeline'
+name: 'Execução Manual'
+# regras de disparo (gatilhos/triggers)
+# gatilho de exec manual = workflow_dispatch
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-
+  workflow_dispatch:
+# trabalhos/tarefas dentro do pipeline = jobs
 jobs:
-  cypress-run:
+  e2e-tests:
+    #maquina que o job vai executar
     runs-on: ubuntu-latest
-
+    # passos do script de build
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      # clone do projeto
+      - uses: actions/checkout@v4
+      # instalação do node
+      - uses: actions/setup-node@v4
         with:
-          node-version: '18'
-
-      - name: Install Yarn
+          node-version: latest
+      # instalação do Yarn
+      - name: Instalando Yarn
         run: npm install -g yarn
 
-      - name: Install dependencies with Yarn
-        run: yarn install
+      # instalação das dependências
+      - name: Instalando dependências
+        run: yarn
 
+      # instalação cypress
       - name: Install Cypress
         run: yarn add cypress --dev
 
